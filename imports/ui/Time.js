@@ -8,8 +8,8 @@ export default class Time extends Component {
 	}
 	
 	render() {
-    return (
-      <TimeFormat value={this.props.time} format='HH:mm:ss'/>
-    );
+	    return (
+	      <TimeFormat value={this.props.time} format='HH:mm:ss'/>
+	    );
   }
 }

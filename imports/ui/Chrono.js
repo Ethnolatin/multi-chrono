@@ -17,31 +17,31 @@ export default class Chrono extends Component {
   }
 
   incrementCompteur() {
-    this.setState({time: this.state.time + 1});
+    this.setState({ time: this.state.time + 1 });
   }
 
   goStopClick() {
     if (!this.state.demarre) {
       this.interval = setInterval(this.incrementCompteur, 1000);
-      this.setState({label: "Stop"});
+      this.setState({ label: "Stop" });
     } else {
       clearInterval(this.interval);
-      this.setState({label: "Go"});
+      this.setState({ label: "Go" });
     }
     this.state.demarre = !this.state.demarre;
   }
 
   resetClick() {
-    this.setState({time: 0});
+    this.setState({ time: 0 });
   }
 
   render() {
     return (
-      <span>
-        <Time time={new Date(0, 0, 0, 0, 0, Number(this.state.time))}/>
-        <button onClick={this.goStopClick}>{this.state.label}</button>
-        <button id="reset" onClick={this.resetClick}>Reset</button>
-      </span>
+      <table><tbody><tr>
+        <td><Time time={new Date(0, 0, 0, 0, 0, Number(this.state.time))}/></td>
+        <td><button onClick={this.goStopClick}>{this.state.label}</button></td>
+        <td><button id="reset" onClick={this.resetClick}>Reset</button></td>
+      </tr></tbody></table>
     );
   }
 

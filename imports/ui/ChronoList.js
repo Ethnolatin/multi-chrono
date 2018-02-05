@@ -10,14 +10,14 @@ export default class ChronoList extends Component {
 
   render() {
     return (
-      <ul>
+      <table><tbody>
         {this.props.items.map((item, index) => (
-          <li key={item.id}>
-            <span>#{index+1} - </span>
-            <Chrono />
-          </li>
+          <tr key={item.id}>
+            <th>#{index+1}</th>
+            <td><Chrono /></td>
+          </tr>
         ))}
-      </ul>
+      </tbody></table>
     );
   }
 }

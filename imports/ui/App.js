@@ -3,6 +3,7 @@ import { Component } from 'react';
 import ChronoList from './ChronoList.js';
 
 export default class App extends Component {
+  
   constructor(props) {
     super(props);
     this.state = { items:[] };
@@ -10,14 +11,8 @@ export default class App extends Component {
   }
 
   handleSubmit(e) {
-    const newItem = {
-      text: this.state.text,
-      id: Date.now()
-    };
-    this.setState(prevState => ({
-      items: prevState.items.concat(newItem),
-      text: ''
-    }));
+    const newItem = { id: Date.now() };
+    this.setState(prevState => ({ items: prevState.items.concat(newItem) }));
   }
 
   render() {
