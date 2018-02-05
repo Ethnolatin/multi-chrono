@@ -9,7 +9,7 @@ export default class Chrono extends Component {
     this.state = {
       label: 'Go',
       time: 0,
-      demarre: null
+      demarre: null,
     };
     this.incrementCompteur = this.incrementCompteur.bind(this);
     this.goStopClick = this.goStopClick.bind(this);
@@ -37,11 +37,11 @@ export default class Chrono extends Component {
 
   render() {
     return (
-      <div>
+      <span>
         <Time time={new Date(0, 0, 0, 0, 0, Number(this.state.time))}/>
         <button onClick={this.goStopClick}>{this.state.label}</button>
         <button id="reset" onClick={this.resetClick}>Reset</button>
-      </div>
+      </span>
     );
   }
 

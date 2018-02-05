@@ -11,8 +11,9 @@ export default class ChronoList extends Component {
   render() {
     return (
       <ul>
-        {this.props.items.map((item) => (
+        {this.props.items.map((item, index) => (
           <li key={item.id}>
+            <span>#{index+1} - </span>
             <Chrono />
           </li>
         ))}
