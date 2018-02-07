@@ -6,7 +6,7 @@ export default class App extends Component {
   
   constructor(props) {
     super(props);
-    this.state = { items:[] };
+    this.state = { items: [] };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -19,9 +19,7 @@ export default class App extends Component {
     return (
       <div>
         <ChronoList items={this.state.items} />
-        <button onClick={this.handleSubmit}>
-          Add #{this.state.items.length + 1}
-        </button>
+        <button onClick={this.handleSubmit}>Add new</button>
       </div>
     );
   }
