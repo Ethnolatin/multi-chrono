@@ -30,7 +30,7 @@ export default class Chrono extends Component {
 
   goStopClick() {
     if (!this.state.demarre) {
-      this.interval = setInterval(this.incrementCompteur, 10);
+      this.interval = setInterval(this.incrementCompteur, 1000);
       this.setState({ label: "Stop" });
     } else {
       clearInterval(this.interval);
