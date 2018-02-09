@@ -26,12 +26,11 @@ export default class Chrono extends Component {
     } else {
       this.setState ({ timeDisplay: this.state.timeDisplay });
     }
-    console.log(this.state.lap, this.state.time, this.state.timeDisplay);
   }
 
   goStopClick() {
     if (!this.state.demarre) {
-      this.interval = setInterval(this.incrementCompteur, 1000);
+      this.interval = setInterval(this.incrementCompteur, 10);
       this.setState({ label: "Stop" });
     } else {
       clearInterval(this.interval);
@@ -50,7 +49,11 @@ export default class Chrono extends Component {
   }
 
   resetClick() {
-    this.setState({ time: 0, timeDisplay: 0 });
+    this.setState({
+      time: 0,
+      timeDisplay: 0,
+      lap: null
+    });
   }
 
   render() {
