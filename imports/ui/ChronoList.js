@@ -6,6 +6,12 @@ export default class ChronoList extends Component {
 
   constructor(props) {
     super(props);
+    this.state = { items: [] };
+    this.deleteClick = this.deleteClick.bind(this);
+  }
+
+  deleteClick(index) {
+    this.setState({items: this.props.items.splice(index,1) });
   }
 
   render() {
@@ -15,6 +21,7 @@ export default class ChronoList extends Component {
           <tr key={item.id}>
             <th>#{index+1}</th>
             <td><Chrono /></td>
+            <td><button onClick={() => this.deleteClick(index)}>Delete</button></td>
           </tr>
         ))}
       </tbody></table>
