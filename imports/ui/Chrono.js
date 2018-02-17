@@ -62,7 +62,7 @@ export default class Chrono extends Component {
         <td><Time time={new Date(0, 0, 0, 0, 0, Number(this.state.timeDisplay))}/></td>
         <td><button onClick={this.goStopClick}>{this.state.label}</button></td>
         <td><button onClick={this.lapClick}>Lap</button></td>
-        <td><button id="reset" onClick={this.resetClick}>Reset</button></td>
+        <td><button id="red" onClick={this.resetClick}>Reset</button></td>
       </tr></tbody></table>
     );
   }

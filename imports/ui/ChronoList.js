@@ -21,7 +21,7 @@ export default class ChronoList extends Component {
           <tr key={item.id}>
             <th>#{index+1}</th>
             <td><Chrono /></td>
-            <td><button onClick={() => this.deleteClick(index)}>Delete</button></td>
+            <td><button id="black" onClick={() => this.deleteClick(index)}>Delete</button></td>
           </tr>
         ))}
       </tbody></table>
