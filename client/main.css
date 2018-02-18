@@ -1,16 +1,23 @@
 button {
-    width: 70px;
-    height: 20px;
-    margin: 0px 0px 0px 10px;
-    }
+  width: 70px;
+  height: 20px;
+  margin: 0px 0px 0px 10px;
+}
 
-#red {
+/*
+  l'id c'est vraiment quand on veut appeler quelque chose d'unique dans toute la page (ça n'est pas le cas ici)
+  c'est à éviter au maximum car on ne sait pas forcément ce qu'il y a autour du composant
+  donc à part pour le branchement de l'élément racine de React (dans main.html et main.js), je te
+  conseille de toujours utiliser les classes
+  et plutôt avec des noms précis vu que c'est plus générique qu'un id
+*/
+.red-button {
 	background-color: red;
 	color: white;
 	margin: 0px 0px 0px 5px;
 }
 
-#black {
+.black-button {
 	background-color: black;
 	color: white;
 	margin: 0px 0px 0px 5px;
