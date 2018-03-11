@@ -2,6 +2,7 @@ import React from 'react'
 import Chrono from './Chrono'
 
 export default class ChronoContainer extends React.Component {
+  
   constructor(props) {
     super(props)
     this.state = {
@@ -19,9 +20,11 @@ export default class ChronoContainer extends React.Component {
   componentWillUnmount() {
     clearInterval(this.interval)
   }
+
   incrementCompteur() {
     this.setState({ time: this.state.time + 1 })
   }
+
   goStopClick() {
     if (!this.state.demarre) {
       this.interval = setInterval(this.incrementCompteur, 1000)
@@ -31,6 +34,7 @@ export default class ChronoContainer extends React.Component {
 
     this.setState({demarre: !this.state.demarre})
   }
+  
   lapClick = () => this.setState({lap: !this.state.lap, timeDisplay: this.state.time})
 
   resetClick() {

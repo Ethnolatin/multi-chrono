@@ -8,6 +8,7 @@ export default function(props) {
     lapClickHandler, resetClickHandler
   } = props
   const time = new Date(0, 0, 0, 0, 0, Number(timeDisplay))
+  
   return (
     <table><tbody><tr>
       <td>
