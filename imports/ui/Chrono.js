@@ -3,6 +3,7 @@ import TimeFormat from 'react-time-format'
 
 
 export default function(props) {
+  
   const {
     timeDisplay, goStopClickHandler, goStopLabel,
     lapClickHandler, resetClickHandler

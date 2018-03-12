@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React     from 'react'
 import ChronoContainer from './ChronoContainer'
-import ChronoLabel from './ChronoLabel'
+import ChronoLabelContainer from './ChronoLabelContainer'
 
 export default class ChronoList extends React.Component {
   
@@ -18,7 +18,7 @@ export default class ChronoList extends React.Component {
       <table><tbody>
         {this.props.items.map((item, index) => (
           <tr key={item.id}>
-            <th><ChronoLabel /></th>
+            <th><ChronoLabelContainer /></th>
             <td><ChronoContainer /></td>
             <td>
               <button

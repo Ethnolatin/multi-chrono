@@ -1,8 +1,12 @@
-export default class ChronoLabel extends React.Component {
+import React from 'react'
+import ChronoLabel from './ChronoLabel'
+
+export default class ChronoLabelContainer extends React.Component {
+
 	constructor(props) {
     super(props)
     this.state = {
-    	value: 'Nom',
+    	labelValue: 'Nom',
     	displayForm: true
     };
 
@@ -11,26 +15,22 @@ export default class ChronoLabel extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({labelValue: event.target.value});
   }
 
   handleSubmit(event) {
     event.preventDefault();
     this.setState({displayForm: false});
   }
-
-  const nameInput =
-  		<form onSubmit={this.handleSubmit}>
-        <label>
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-          <input type="submit" value="Envoi" />
-        </label>
-      </form>
-  
+ 
   render() {
-  	return (
-    	this.state.displayForm ? <span>{this.nameInput}</span> :
-      <span>{this.state.value}</span>
-     );
+    return (
+      <ChronoLabel
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+        displayForm={this.state.displayForm}
+        labelValue={this.state.labelValue}
+      />
+    )
   }
 }
