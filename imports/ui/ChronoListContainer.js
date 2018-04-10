@@ -18,11 +18,7 @@ export default class ChronoListContainer extends React.Component {
       ...items.slice(0, index),
       ...items.slice(index + 1, items.length)
     ]})
-    // équivalent à
-    // const a = items.slice(0, index)
-    // const b = items.slice(index + 1, items.length)
-    // this.setState({items: a.concat(b)})
-    // les éléments sont copiés donc il n'y a pas de pb de mutation
+
   }
   render() {
     return (
