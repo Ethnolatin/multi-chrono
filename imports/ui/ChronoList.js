@@ -1,13 +1,11 @@
 import PropTypes from 'prop-types'
 import React     from 'react'
 import ChronoContainer from './ChronoContainer'
-import ChronoLabelContainer from './ChronoLabelContainer'
 
 export default class ChronoList extends React.Component {
   
   static propTypes = {
     items:              PropTypes.array.isRequired,
-    deleteClickHandler: PropTypes.func.isRequired,
   }
   constructor(props) {
     super(props)
@@ -18,16 +16,7 @@ export default class ChronoList extends React.Component {
       <table><tbody>
         {this.props.items.map((item, index) => (
           <tr key={item.id}>
-            <th><ChronoLabelContainer /></th>
-            <td><ChronoContainer /></td>
-            <td>
-              <button
-                className="black-button"
-                onClick={() => this.props.deleteClickHandler(index)}
-              >
-                Delete
-              </button>
-            </td>
+            <td><ChronoContainer deleteClickHandler={this.props.deleteChrono(index)} /></td>
           </tr>
         ))}
       </tbody></table>

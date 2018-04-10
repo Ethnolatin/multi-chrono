@@ -10,17 +10,30 @@ export default class ChronoContainer extends React.Component {
       timeDisplay: 0,
       demarre:     null,
       lap:         null,
+      labelValue: 'Nom',
+      displayForm: true
     }
     this.incrementCompteur = this.incrementCompteur.bind(this)
     this.goStopClick       = this.goStopClick.bind(this)
     this.lapClick          = this.lapClick.bind(this)
     this.resetClick        = this.resetClick.bind(this)
+    this.handleChange      = this.handleChange.bind(this)
+    this.handleSubmit      = this.handleSubmit.bind(this)
   }
 
   componentWillUnmount() {
     clearInterval(this.interval)
   }
 
+  handleChange(event) {
+    this.setState({labelValue: event.target.value});
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.setState({displayForm: false});
+  }
+ 
   incrementCompteur() {
     this.setState({ time: this.state.time + 1 })
   }
@@ -57,6 +70,11 @@ export default class ChronoContainer extends React.Component {
         goStopLabel={this.goStopLabel(this.state.demarre)}
         lapClickHandler={this.lapClick}
         resetClickHandler={this.resetClick}
+        deleteClickHandler={this.props.deleteClickHandler}
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+        displayForm={this.state.displayForm}
+        labelValue={this.state.labelValue}
       />
     )
   }
