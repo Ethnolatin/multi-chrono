@@ -14,6 +14,6 @@ export default function(props) {
           <input type="submit" value="Envoi" />
         </label>
       </form> :
-      <span>{labelValue}</span>
+      <span className="name">{labelValue}</span>
   );
 }

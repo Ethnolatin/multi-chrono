@@ -1,5 +1,6 @@
 import React from 'react'
 import ChronoList from './ChronoList'
+import {addStoredChrono, deleteStoredChrono} from '../lib/storageManagement'
 
 export default class ChronoListContainer extends React.Component {
   constructor(props) {
@@ -11,10 +12,12 @@ export default class ChronoListContainer extends React.Component {
   addClickHandler(e) {
     const newItem = {id: Date.now()}
     this.setState(prevState => ({items: prevState.items.concat(newItem)}))
+    addStoredChrono()
   }
 
   deleteChrono(index) {
     return () => {
+      deleteStoredChrono(index)
       const items = this.state.items
       this.setState({items: [
         ...items.slice(0, index),

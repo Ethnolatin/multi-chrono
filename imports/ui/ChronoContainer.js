@@ -19,7 +19,7 @@ export default class ChronoContainer extends React.Component {
     this.resetClick        = this.resetClick.bind(this)
     this.handleChange      = this.handleChange.bind(this)
     this.handleSubmit      = this.handleSubmit.bind(this)
-  }
+    }
 
   componentWillUnmount() {
     clearInterval(this.interval)
@@ -30,8 +30,9 @@ export default class ChronoContainer extends React.Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-    this.setState({displayForm: false});
+    event.preventDefault()
+    this.props.saveLabel(this.state.labelValue)
+    this.setState({displayForm: false})
   }
  
   incrementCompteur() {
@@ -41,16 +42,33 @@ export default class ChronoContainer extends React.Component {
   goStopClick() {
     if (!this.state.demarre) {
       this.interval = setInterval(this.incrementCompteur, 1000)
+      this.props.saveStart(Date.now())
+      this.props.saveStop(null)
     } else {
       clearInterval(this.interval)
+      this.props.saveStop(Date.now())
     }
 
     this.setState({demarre: !this.state.demarre})
   }
   
-  lapClick = () => this.setState({lap: !this.state.lap, timeDisplay: this.state.time})
+  lapClick () {
+    const newLap = !this.state.lap
+    if (newLap) {
+      this.props.saveLap(this.state.time)
+    } else {
+      this.props.saveLap(null)
+    }
+    this.setState({
+      lap: newLap,
+      timeDisplay: this.state.time
+    })
+  }
 
   resetClick() {
+    this.props.saveStart(Date.now())
+    this.props.saveStop(null)
+    this.props.saveLap(null)
     this.setState({
       time: 0,
       timeDisplay: 0,

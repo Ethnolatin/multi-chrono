@@ -21,16 +21,11 @@ export default function(props) {
           labelValue={labelValue}
           />
       </td>
-      <td>
-        <TimeFormat value={time} format='HH:mm:ss' />
-      </td>
+      <td><TimeFormat className="time" value={time} format='HH:mm:ss' /></td>
       <td><button onClick={goStopClickHandler}>{goStopLabel}</button></td>
       <td><button onClick={lapClickHandler}>Lap</button></td>
       <td><button className="red-button" onClick={resetClickHandler}>Reset</button></td>
-      <td><button className="black-button" onClick={deleteClickHandler}>
-            Delete
-          </button>
-      </td>
+      <td><button className="black-button" onClick={deleteClickHandler}>Delete</button></td>
     </tr></tbody></table>
   )
 }
