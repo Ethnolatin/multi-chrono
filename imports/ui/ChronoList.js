@@ -6,7 +6,7 @@ import {saveLabel, saveStart, saveStop, saveLap} from '../lib/storageManagement'
 export default class ChronoList extends React.Component {
   
   static propTypes = {
-    items:              PropTypes.array.isRequired,
+    items: PropTypes.array.isRequired,
   }
   constructor(props) {
     super(props)

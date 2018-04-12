@@ -21,7 +21,7 @@ export default class ChronoListContainer extends React.Component {
       const items = this.state.items
       this.setState({items: [
         ...items.slice(0, index),
-        ...items.slice(index + 1, items.length)
+        ...items.slice(index + 1)
       ]})
     }
   }

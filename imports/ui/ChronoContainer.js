@@ -8,21 +8,19 @@ export default class ChronoContainer extends React.Component {
     this.state = {
       time:        0,
       timeDisplay: 0,
-      demarre:     null,
+      started:     null,
       lap:         null,
       labelValue: 'Nom',
       displayForm: true
     }
-    this.incrementCompteur = this.incrementCompteur.bind(this)
-    this.goStopClick       = this.goStopClick.bind(this)
-    this.lapClick          = this.lapClick.bind(this)
-    this.resetClick        = this.resetClick.bind(this)
     this.handleChange      = this.handleChange.bind(this)
     this.handleSubmit      = this.handleSubmit.bind(this)
-    }
-
-  componentWillUnmount() {
-    clearInterval(this.interval)
+    this.incrementCompteur = this.incrementCompteur.bind(this)
+    this.displayedTime     = this.displayedTime.bind(this)
+    this.goClick           = this.goClick.bind(this)
+    this.stopClick         = this.stopClick.bind(this)
+    this.lapClick          = this.lapClick.bind(this)
+    this.resetClick        = this.resetClick.bind(this)
   }
 
   handleChange(event) {
@@ -39,17 +37,16 @@ export default class ChronoContainer extends React.Component {
     this.setState({ time: this.state.time + 1 })
   }
 
-  goStopClick() {
-    if (!this.state.demarre) {
-      this.interval = setInterval(this.incrementCompteur, 1000)
-      this.props.saveStart(Date.now())
-      this.props.saveStop(null)
-    } else {
-      clearInterval(this.interval)
-      this.props.saveStop(Date.now())
-    }
+  displayedTime = (state) => !state.lap ? state.time : state.timeDisplay;
 
-    this.setState({demarre: !this.state.demarre})
+  goClick() {
+    this.interval = setInterval(this.incrementCompteur, 1000)
+    this.setState({started: !this.state.started})
+  }
+
+  stopClick() {
+    clearInterval(this.interval)
+    this.setState({started: !this.state.started})
   }
   
   lapClick () {
@@ -76,16 +73,17 @@ export default class ChronoContainer extends React.Component {
     });
   }
 
-  goStopLabel = (isStarted) => isStarted ? 'Stop' : 'Go'
-
-  displayedTime = (state) => !state.lap ? state.time : state.timeDisplay
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
 
   render() {
     return (
       <Chrono
+        started={this.state.started}
         timeDisplay={this.displayedTime(this.state)}
-        goStopClickHandler={this.goStopClick}
-        goStopLabel={this.goStopLabel(this.state.demarre)}
+        goClickHandler={this.goClick}
+        stopClickHandler={this.stopClick}
         lapClickHandler={this.lapClick}
         resetClickHandler={this.resetClick}
         deleteClickHandler={this.props.deleteClickHandler}
