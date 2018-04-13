@@ -1,23 +1,27 @@
 import React from 'react'
 import ChronoList from './ChronoList'
-import {addStoredChrono, deleteStoredChrono} from '../lib/storageManagement'
+import {addSavedChrono, deleteSavedChrono, getInitialData} from '../lib/storageManagement'
 
 export default class ChronoListContainer extends React.Component {
   constructor(props) {
     super(props)
-    this.state           = {items: []}
+    this.state = {
+      items: getInitialData().items,
+    }
+    this.initialData     = getInitialData().initialData
     this.deleteChrono    = this.deleteChrono.bind(this)
     this.addClickHandler = this.addClickHandler.bind(this)
   }
+
   addClickHandler(e) {
     const newItem = {id: Date.now()}
     this.setState(prevState => ({items: prevState.items.concat(newItem)}))
-    addStoredChrono()
+    addSavedChrono()
   }
 
   deleteChrono(index) {
     return () => {
-      deleteStoredChrono(index)
+      deleteSavedChrono(index)
       const items = this.state.items
       this.setState({items: [
         ...items.slice(0, index),
@@ -31,6 +35,7 @@ export default class ChronoListContainer extends React.Component {
       <div>
         <ChronoList
           items={this.state.items}
+          initialData={this.initialData}
           deleteChrono={this.deleteChrono}
         />
         <button onClick={this.addClickHandler}>Add new</button>

@@ -22,6 +22,7 @@ export default function(props) {
       </td>
       <td>
         <TimeFormat
+          className ="time"
           value={time}
           format='HH:mm:ss'
           />

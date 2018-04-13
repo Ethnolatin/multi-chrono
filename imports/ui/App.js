@@ -1,4 +1,4 @@
 import React from 'react'
-import StorageCheck from './StorageCheck'
+import ChronoListContainer from './ChronoListContainer'
 
-export default () => <StorageCheck />
+export default () => <ChronoListContainer />
