@@ -15,8 +15,8 @@ export default class ChronoListContainer extends React.Component {
 
   addClickHandler(e) {
     const newItem = {id: Date.now()}
-    this.setState(prevState => ({items: prevState.items.concat(newItem)}))
     addSavedChrono()
+    this.setState(prevState => ({items: prevState.items.concat(newItem)}))
   }
 
   deleteChrono(index) {

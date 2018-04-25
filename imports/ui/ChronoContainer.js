@@ -19,7 +19,7 @@ export default class ChronoContainer extends React.Component {
       timeDisplay: this.props.timeDisplay,
       started:     this.props.started,
       lap:         this.props.lap,
-      displayForm: this.props.displayForm
+      displayForm: this.props.displayForm,
     }
     this.handleChange      = this.handleChange.bind(this)
     this.handleSubmit      = this.handleSubmit.bind(this)
@@ -27,10 +27,10 @@ export default class ChronoContainer extends React.Component {
     this.displayedTime     = this.displayedTime.bind(this)
     this.goClick           = this.goClick.bind(this)
     this.stopClick         = this.stopClick.bind(this)
-    this.lapClick          = this.lapClick.bind(this)
-    this.resetClick        = this.resetClick.bind(this)
     this.runCounter        = this.runCounter.bind(this)
     this.stopCounter       = this.stopCounter.bind(this)
+    this.lapClick          = this.lapClick.bind(this)
+    this.resetClick        = this.resetClick.bind(this)
     if(this.state.started) {this.runCounter()}
   }
 
@@ -43,7 +43,7 @@ export default class ChronoContainer extends React.Component {
     this.props.saveLabel(this.state.labelValue)
     this.setState({displayForm: false})
   }
- 
+
   incrementCompteur() {
     this.setState({ time: this.state.time + 1 })
   }
@@ -67,9 +67,9 @@ export default class ChronoContainer extends React.Component {
   }
 
   stopCounter() {
-      clearInterval(this.interval)
+    clearInterval(this.interval)
   }
-  
+
   lapClick () {
     const newLap = !this.state.lap
     if (newLap) {

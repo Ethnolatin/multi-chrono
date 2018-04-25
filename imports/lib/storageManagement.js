@@ -2,37 +2,41 @@ import React from 'react'
 
 export function addSavedChrono() {
 	const storedChronos = JSON.parse(localStorage.getItem("storedChronos")) || []
+	console.log(storedChronos)
 	storedChronos.push({})
+	console.log(storedChronos)
 	const JSONStoredChronos = JSON.stringify(storedChronos)
 	localStorage.setItem("storedChronos", JSONStoredChronos)
 }
 
-
 export function deleteSavedChrono(counterIdx) {
 	const storedChronos = JSON.parse(localStorage.getItem("storedChronos"))
+	console.log(storedChronos)
 	const newStoredChronos = [
 		...storedChronos.slice(0, counterIdx),
 	  ...storedChronos.slice(counterIdx + 1)]
+	console.log(newStoredChronos)
 	const JSONStoredChronos = JSON.stringify(newStoredChronos)
 	localStorage.setItem("storedChronos", JSONStoredChronos)
 }
-
 
 export function saveLabel(counterIdx, label) {
 	updateSavedChronos(counterIdx, "label", label)
 }
 
-
 export function saveStart(counterIdx, startTime) {
-	updateSavedChronos(counterIdx, "startTime", startTime)
+	let newStartTime = 0
+	const storedChronos = JSON.parse(localStorage.getItem("storedChronos"))
+	const savedStartTime = storedChronos[counterIdx]["startTime"]
+	const savedStopTime = storedChronos[counterIdx]["stopTime"]
+	!!savedStopTime ? newStartTime = startTime - (savedStopTime - savedStartTime): newStartTime = startTime
+	updateSavedChronos(counterIdx, "startTime", newStartTime)
 	updateSavedChronos(counterIdx, "stopTime", null)
 }
-
 
 export function saveStop(counterIdx, stopTime) {
 	updateSavedChronos(counterIdx, "stopTime", stopTime)
 }
-
 
 export function saveLap(counterIdx, lapDisplay) {
 	updateSavedChronos(counterIdx, "lapDisplay", lapDisplay)
@@ -40,7 +44,6 @@ export function saveLap(counterIdx, lapDisplay) {
 
 export function getInitialData() {
   const storedChronos = JSON.parse(localStorage.getItem("storedChronos"))
-	  				console.log(storedChronos)
   const items = []
   const initialData = []
   if (storedChronos) {
@@ -61,14 +64,12 @@ export function getInitialData() {
   return {items: items, initialData: initialData}
 }
 
-
 function updateSavedChronos(counterIdx, key, value) {
 	const storedChronos = JSON.parse(localStorage.getItem("storedChronos"))
 	storedChronos[counterIdx][key] = value
 	const JSONStoredChronos = JSON.stringify(storedChronos)
 	localStorage.setItem("storedChronos", JSONStoredChronos)
 }
-
 
 const getTime = ({startTime, stopTime}) => (
 	!startTime ?
