@@ -2,7 +2,7 @@ import React from 'react'
 import Chrono from './Chrono'
 
 export default class ChronoContainer extends React.Component {
-  
+
   constructor(props) {
     super(props)
     this.state = {
@@ -11,14 +11,13 @@ export default class ChronoContainer extends React.Component {
       demarre:     null,
       lap:         null,
       labelValue: 'Nom',
-      displayForm: true
     }
+    this.handleChange      = this.handleChange.bind(this)
+    this.handleSubmit      = this.handleSubmit.bind(this)
     this.incrementCompteur = this.incrementCompteur.bind(this)
     this.goStopClick       = this.goStopClick.bind(this)
     this.lapClick          = this.lapClick.bind(this)
     this.resetClick        = this.resetClick.bind(this)
-    this.handleChange      = this.handleChange.bind(this)
-    this.handleSubmit      = this.handleSubmit.bind(this)
   }
 
   componentWillUnmount() {
@@ -31,9 +30,8 @@ export default class ChronoContainer extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.setState({displayForm: false});
   }
- 
+
   incrementCompteur() {
     this.setState({ time: this.state.time + 1 })
   }
@@ -44,17 +42,16 @@ export default class ChronoContainer extends React.Component {
     } else {
       clearInterval(this.interval)
     }
-
     this.setState({demarre: !this.state.demarre})
   }
-  
+
   lapClick = () => this.setState({lap: !this.state.lap, timeDisplay: this.state.time})
 
   resetClick() {
     this.setState({
-      time: 0,
+      time:        0,
       timeDisplay: 0,
-      lap: null
+      lap:         null
     });
   }
 
@@ -65,16 +62,15 @@ export default class ChronoContainer extends React.Component {
   render() {
     return (
       <Chrono
+        labelValue={this.state.labelValue}
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
         timeDisplay={this.displayedTime(this.state)}
-        goStopClickHandler={this.goStopClick}
         goStopLabel={this.goStopLabel(this.state.demarre)}
+        goStopClickHandler={this.goStopClick}
         lapClickHandler={this.lapClick}
         resetClickHandler={this.resetClick}
         deleteClickHandler={this.props.deleteClickHandler}
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}
-        displayForm={this.state.displayForm}
-        labelValue={this.state.labelValue}
       />
     )
   }
