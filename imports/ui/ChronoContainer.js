@@ -60,20 +60,19 @@ export default class ChronoContainer extends React.Component {
     });
   }
 
-  componentWillUnmount() {
-    clearInterval(this.interval)
-  }
-
   render() {
     return (
       <Chrono
-        started={this.state.started}
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+        labelValue={this.state.labelValue}
         timeDisplay={this.displayedTime(this.state)}
         goClickHandler={this.goClick}
         stopClickHandler={this.stopClick}
         lapClickHandler={this.lapClick}
         resetClickHandler={this.resetClick}
         deleteClickHandler={this.props.deleteClickHandler}
+        started={this.state.started}
       />
     )
   }
