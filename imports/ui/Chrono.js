@@ -14,7 +14,7 @@ export default function(props) {
   return (
     <table><tbody><tr>
       <td><input type="text" defaultValue={labelValue} size={12} onFocus={handleChange} onBlur={handleSubmit} /></td>
-      <td><TimeFormat value={time} format='HH:mm:ss' /></td>
+      <td><TimeFormat className="time" value={time} format='HH:mm:ss' /></td>
       <td>
         {started &&
           <button onClick={stopClickHandler}>Stop</button>
