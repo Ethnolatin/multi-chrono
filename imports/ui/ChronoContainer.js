@@ -6,24 +6,22 @@ export default class ChronoContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      time:        0,
+      startTime:   0,
+      stopTime:    null,
       timeDisplay: 0,
-      started:     null,
-      lap:         null,
       labelValue: 'Nom',
+      lap:         null
     }
+    const time = Date.now()-this.state.startTime
+    const started = !!this.state.startTime && !this.state.stopTime
+    console.log(started)
     this.handleChange      = this.handleChange.bind(this)
     this.handleSubmit      = this.handleSubmit.bind(this)
-    this.incrementCompteur = this.incrementCompteur.bind(this)
     this.displayedTime     = this.displayedTime.bind(this)
     this.goClick           = this.goClick.bind(this)
     this.stopClick         = this.stopClick.bind(this)
     this.lapClick          = this.lapClick.bind(this)
     this.resetClick        = this.resetClick.bind(this)
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval)
   }
 
   handleChange(event) {
@@ -34,33 +32,29 @@ export default class ChronoContainer extends React.Component {
     event.preventDefault();
   }
 
-  incrementCompteur() {
-    this.setState({ time: this.state.time + 1 })
-  }
-
-  displayedTime = (state) => !state.lap ? state.time : state.timeDisplay;
+  displayedTime = (state) => !state.lap ? Date.now()-this.state.startTime : state.timeDisplay;
 
   goClick() {
-    this.interval = setInterval(this.incrementCompteur, 1000)
-    this.setState({started: !this.state.started})
+    this.setState({startTime: Date.now()})
   }
 
   stopClick() {
-    clearInterval(this.interval)
-    this.setState({started: !this.state.started})
+    this.setState({stopTime: Date.now()})
   }
 
-  lapClick = () => this.setState({lap: !this.state.lap, timeDisplay: this.state.time})
+  lapClick = () => this.setState({lap: !this.state.lap, timeDisplay: this.props.time})
 
   resetClick() {
     this.setState({
-      time:        0,
+      startTime:   null,
+      stopTime:    null,
       timeDisplay: 0,
       lap:         null
     });
   }
 
   render() {
+    console.log(this.props.started)
     return (
       <Chrono
         handleChange={this.handleChange}
@@ -72,7 +66,7 @@ export default class ChronoContainer extends React.Component {
         lapClickHandler={this.lapClick}
         resetClickHandler={this.resetClick}
         deleteClickHandler={this.props.deleteClickHandler}
-        started={this.state.started}
+        started={this.props.started}
       />
     )
   }

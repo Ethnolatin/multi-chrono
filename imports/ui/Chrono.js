@@ -7,9 +7,9 @@ export default function(props) {
   const {
     handleChange, handleSubmit, labelValue, timeDisplay, goClickHandler,
     stopClickHandler, lapClickHandler, resetClickHandler, deleteClickHandler, started
-
   } = props
   const time = new Date(0, 0, 0, 0, 0, Number(timeDisplay))
+  console.log(started)
 
   return (
     <table><tbody><tr>
