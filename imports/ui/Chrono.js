@@ -9,7 +9,7 @@ export default function(props) {
     stopClickHandler, lapClickHandler, resetClickHandler, deleteClickHandler, started
   } = props
   const time = new Date(0, 0, 0, 0, 0, Number(timeDisplay))
-  console.log(started)
+  console.log(timeDisplay, time, started)
 
   return (
     <table><tbody><tr>
@@ -27,4 +27,5 @@ export default function(props) {
       <td><button className="black-button" onClick={deleteClickHandler}>Delete</button></td>
     </tr></tbody></table>
   )
+
 }
