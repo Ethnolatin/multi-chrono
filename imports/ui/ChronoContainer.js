@@ -45,7 +45,7 @@ export default class ChronoContainer extends React.Component {
 
   stopClick() {
     clearInterval(this.interval)
-    this.setState({stopTime: Date.now()})
+    this.setState({stopTime: Date.now(), lap: null, timeDisplay: (Date.now()-this.state.startTime)/1000})
   }
 
   lapClick = () => this.setState({lap: !this.state.lap})
